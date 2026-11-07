@@ -7,7 +7,7 @@
   const casesFor = milestone => milestone.projects.map(id => projects[id]).filter(Boolean);
   const card = project => {
     const image = project.public && project.cover ? `<img src="assets/${esc(project.cover)}" alt="${esc(project.title)}" loading="lazy">` : "";
-    const state = project.public ? "" : '<span class="case-state">Case in development</span>';
+    const state = project.public ? "" : `<span class="case-state">${esc(project.status || "Case in development")}</span>`;
     return `<a class="case-card ${project.public ? "" : "is-development"}" href="projects/${esc(project.slug)}/"><span class="case-card-media">${image}<span class="case-card-placeholder" aria-hidden="true">↗</span></span><span class="case-card-body"><span class="case-card-meta">${esc(project.source)} · ${esc(project.type)}</span><strong>${esc(project.title)}</strong><span>${esc(project.summary)}</span>${state}</span></a>`;
   };
   const panel = milestone => {
