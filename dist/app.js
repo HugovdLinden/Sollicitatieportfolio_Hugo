@@ -1,7 +1,6 @@
 (function () {
   const { timeline, projects } = window.PORTFOLIO;
   const host = document.querySelector("#timeline");
-  const preview = document.querySelector("#journey-preview");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const mobileJourney = matchMedia("(max-width: 720px), (hover: none)");
   const esc = value => String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
@@ -24,14 +23,26 @@
   function activate(element) {
     const item = timeline[Number(element.dataset.index)];
     if (!item || !casesFor(item).length) return;
-    host.querySelectorAll(".journey-milestone.is-active").forEach(node => node.classList.remove("is-active"));
+    host.querySelectorAll(".journey-milestone.is-active").forEach(node => { node.classList.remove("is-active"); const panel = node.querySelector(".mobile-case-panel"); if (panel) panel.hidden = true; });
     element.classList.add("is-active");
-    preview.innerHTML = `<p class="eyebrow">Selected milestone</p><p class="preview-period">${esc(item.period)}</p><h3>${esc(item.title)}</h3><p class="preview-copy">Related public cases and work-in-progress.</p>${panel(item)}`;
+    const projectPanel = element.querySelector(".mobile-case-panel");
+    if (!mobileJourney.matches && projectPanel) {
+      projectPanel.hidden = false;
+      element.querySelector(".milestone-select").setAttribute("aria-expanded", "true");
+    }
   }
   const interactive = [...host.querySelectorAll(".journey-milestone.has-cases")];
   interactive.forEach(item => {
     item.addEventListener("mouseenter", () => activate(item));
     item.addEventListener("focusin", () => activate(item));
+    item.addEventListener("mouseleave", () => {
+      if (!mobileJourney.matches) {
+        item.classList.remove("is-active");
+        const projectPanel = item.querySelector(".mobile-case-panel");
+        if (projectPanel) projectPanel.hidden = true;
+        item.querySelector(".milestone-select").setAttribute("aria-expanded", "false");
+      }
+    });
     const button = item.querySelector(".milestone-select");
     button.addEventListener("click", () => {
       if (!mobileJourney.matches) return;
@@ -43,7 +54,6 @@
       if (!open) activate(item);
     });
   });
-  if (interactive.length) activate(interactive[0]);
   document.querySelector("#year").textContent = new Date().getFullYear();
   if (!reduceMotion && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .12 });
