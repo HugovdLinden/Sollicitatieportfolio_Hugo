@@ -2,7 +2,9 @@
   const { timeline, projects } = window.PORTFOLIO;
   const host = document.querySelector("#timeline");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const mobileJourney = matchMedia("(max-width: 720px), (hover: none)");
+  // Keep the layout and interaction breakpoint together. A coarse pointer is
+  // treated as a disclosure, even when a device also has a mouse attached.
+  const disclosureMode = matchMedia("(max-width: 720px), (hover: none), (pointer: coarse)");
   const esc = value => String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
   const casesFor = milestone => milestone.projects.map(id => projects[id]).filter(Boolean);
   const card = project => {
@@ -12,7 +14,7 @@
   };
   const panel = milestone => {
     const cases = casesFor(milestone);
-    return cases.length ? `<div class="case-card-list">${cases.map(card).join("")}</div>` : `<div class="journey-empty"><p class="eyebrow">${milestone.kind === "work" ? "Work milestone" : "Education milestone"}</p><p>No public case is linked to this milestone yet.</p></div>`;
+    return cases.length ? `<div class="case-card-list" tabindex="0" aria-label="Related projects. Scroll horizontally to browse.">${cases.map(card).join("")}</div>` : `<div class="journey-empty"><p class="eyebrow">${milestone.kind === "work" ? "Work milestone" : "Education milestone"}</p><p>No public case is linked to this milestone yet.</p></div>`;
   };
   const milestone = (item, index) => {
     const hasCases = casesFor(item).length > 0;
@@ -20,42 +22,63 @@
     return `<article class="timeline-item journey-milestone reveal ${hasCases ? "has-cases" : ""}" data-milestone="${esc(item.id)}" data-index="${index}"><div class="timeline-date">${esc(item.period)}</div><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-content"><p class="timeline-meta">${esc(item.meta)} · ${item.kind}</p>${control}<p>${esc(item.copy)}</p></div>${hasCases ? `<div class="mobile-case-panel" id="mobile-panel-${esc(item.id)}" hidden>${panel(item)}</div>` : ""}</article>`;
   };
   host.innerHTML = timeline.map(milestone).join("");
+  function setPanelOpen(element, open, animate = true) {
+    const button = element.querySelector(".milestone-select");
+    const projectPanel = element.querySelector(".mobile-case-panel");
+    element.classList.toggle("is-active", open);
+    button.setAttribute("aria-expanded", String(open));
+    if (!projectPanel) return;
+    clearTimeout(projectPanel._hideTimer);
+    if (open) {
+      projectPanel.hidden = false;
+      if (animate && !disclosureMode.matches) {
+        void projectPanel.offsetHeight;
+        requestAnimationFrame(() => projectPanel.classList.add("is-open"));
+      } else projectPanel.classList.add("is-open");
+      return;
+    }
+    projectPanel.classList.remove("is-open");
+    if (animate && !disclosureMode.matches) {
+      projectPanel._hideTimer = setTimeout(() => {
+        if (!element.classList.contains("is-active")) projectPanel.hidden = true;
+      }, 1100);
+    } else projectPanel.hidden = true;
+  }
   function activate(element) {
     const item = timeline[Number(element.dataset.index)];
     if (!item || !casesFor(item).length) return;
-    host.querySelectorAll(".journey-milestone.is-active").forEach(node => { node.classList.remove("is-active"); const panel = node.querySelector(".mobile-case-panel"); if (panel) { panel.classList.remove("is-open"); clearTimeout(panel._hideTimer); panel._hideTimer = setTimeout(() => { if (!node.classList.contains("is-active")) panel.hidden = true; }, 1100); } });
-    element.classList.add("is-active");
-    const projectPanel = element.querySelector(".mobile-case-panel");
-    if (!mobileJourney.matches && projectPanel) {
-      projectPanel.hidden = false;
-      element.querySelector(".milestone-select").setAttribute("aria-expanded", "true");
-      void projectPanel.offsetHeight;
-      requestAnimationFrame(() => projectPanel.classList.add("is-open"));
-    }
+    interactive.forEach(node => { if (node !== element) setPanelOpen(node, false); });
+    setPanelOpen(element, true);
   }
   const interactive = [...host.querySelectorAll(".journey-milestone.has-cases")];
   interactive.forEach(item => {
-    item.addEventListener("mouseenter", () => activate(item));
+    item.addEventListener("pointerenter", event => {
+      if (!disclosureMode.matches && event.pointerType !== "touch") activate(item);
+    });
     item.addEventListener("focusin", () => activate(item));
-    item.addEventListener("mouseleave", () => {
-      if (!mobileJourney.matches) {
-        item.classList.remove("is-active");
-        const projectPanel = item.querySelector(".mobile-case-panel");
-        if (projectPanel) { projectPanel.classList.remove("is-open"); clearTimeout(projectPanel._hideTimer); projectPanel._hideTimer = setTimeout(() => { if (!item.classList.contains("is-active")) projectPanel.hidden = true; }, 1100); }
-        item.querySelector(".milestone-select").setAttribute("aria-expanded", "false");
-      }
+    item.addEventListener("pointerleave", event => {
+      if (!disclosureMode.matches && event.pointerType !== "touch") setPanelOpen(item, false);
     });
     const button = item.querySelector(".milestone-select");
     button.addEventListener("click", () => {
-      if (!mobileJourney.matches) return;
-      const mobilePanel = item.querySelector(".mobile-case-panel");
+      if (!disclosureMode.matches) return;
       const open = button.getAttribute("aria-expanded") === "true";
-      interactive.forEach(other => { other.querySelector(".milestone-select").setAttribute("aria-expanded", "false"); const otherPanel = other.querySelector(".mobile-case-panel"); if (otherPanel) otherPanel.hidden = true; });
-      button.setAttribute("aria-expanded", String(!open));
-      mobilePanel.hidden = open;
-      mobilePanel.classList.toggle("is-open", !open);
-      if (!open) activate(item);
+      interactive.forEach(other => { if (other !== item) setPanelOpen(other, false, false); });
+      setPanelOpen(item, !open, false);
     });
+    const rail = item.querySelector(".case-card-list");
+    if (rail) {
+      rail.addEventListener("wheel", event => {
+        if (disclosureMode.matches || rail.scrollWidth <= rail.clientWidth || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
+        event.preventDefault();
+        rail.scrollBy({ left: event.deltaY, behavior: reduceMotion ? "auto" : "smooth" });
+      }, { passive: false });
+      rail.addEventListener("keydown", event => {
+        if (event.target !== rail || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+        event.preventDefault();
+        rail.scrollBy({ left: event.key === "ArrowRight" ? 260 : -260, behavior: reduceMotion ? "auto" : "smooth" });
+      });
+    }
   });
   document.querySelector("#year").textContent = new Date().getFullYear();
   if (reduceMotion) document.querySelectorAll(".mobile-case-panel").forEach(panel => panel.style.transition = "none");

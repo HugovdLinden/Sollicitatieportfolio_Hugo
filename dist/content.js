@@ -8,6 +8,7 @@ window.PORTFOLIO = {
     "hygea": { id: "hygea", slug: "hygea", milestone: "bologna", title: "Hygea", source: "University of Bologna · Industrial Design 1", type: "Exchange team project", summary: "Safety and security for waste-collection workers and vehicles.", year: "2022", cover: "hygea-cover.png", public: true },
     "apex-seat": { id: "apex-seat", slug: "apex-seat", milestone: "ipd", title: "Apex Seat", source: "TU Delft · Computational Design", type: "Team project", summary: "A parametric car-seat concept for safer high-performance driving, combining adaptable geometry with 3D-printed lattice structures.", year: "Year 1 · Q4", cover: "apex-seat-cover.png", public: true },
     "grabable": { id: "grabable", slug: "grabable", milestone: "ipd-bsc", title: "Grabable", source: "University of Bologna · Montecatone Rehabilitation Institute", type: "Graduation project", summary: "An adjustable hand exoskeleton developed to support grasping for people with hand paralysis after a spinal stroke.", year: "2023", cover: "grabable-cover.png", public: true },
+    "arma": { id: "arma", slug: "arma", milestone: "ipd-bsc", title: "ARMA", source: "Rotterdam University of Applied Sciences · Child & Play Perspectives", type: "Co-design & play concept", summary: "A collaborative play ball shaped with children to support participation across communication barriers.", year: "Year 2", cover: "arma-play.png", public: true },
     "easyfelt-rd": { id: "easyfelt-rd", slug: "easyfelt", milestone: "easyfelt", title: "Case in development", source: "EASYfelt", type: "R&D work", summary: "A public-safe case is in preparation. Confidential development work remains private.", year: "2024—present", cover: null, public: false },
     "3d-next-level": { id: "3d-next-level", slug: "3d-next-level", milestone: "3d-next-level", title: "Fair-ride seat", source: "3D Next Level", type: "Creative engineering", summary: "A real-scale seat concept developed for a fair attraction.", year: "2021—2022", cover: "fairground-seat.png", public: true }
   },
@@ -18,7 +19,7 @@ window.PORTFOLIO = {
     { id: "bridging", kind: "education", period: "2025", title: "Bridging programme DFI", meta: "TU Delft", copy: "WO · Succeeded", projects: ["bendable-cutlery", "twogather"] },
     { id: "bologna", kind: "education", period: "2022—2023", title: "Advanced Design", meta: "University of Bologna", copy: "Magistrale · Minor and graduation", projects: ["hygea"] },
     { id: "3d-next-level", kind: "work", period: "2021—2022", title: "3D Next Level", meta: "Creative engineer", copy: "Concepts and engineering", projects: ["3d-next-level"] },
-    { id: "ipd-bsc", kind: "education", period: "2019—2023", title: "Industrial Product Design", meta: "Rotterdam University of Applied Sciences", copy: "HBO BSc · Propedeuse and graduation", projects: ["grabable"] },
+    { id: "ipd-bsc", kind: "education", period: "2019—2023", title: "Industrial Product Design", meta: "Rotterdam University of Applied Sciences", copy: "HBO BSc · Propedeuse and graduation", projects: ["grabable", "arma"] },
     { id: "secondary", kind: "education", period: "2014—2019", title: "HAVO-NT/NG", meta: "Stanislascollege Westplantsoen", copy: "High school study programme · Graduated", projects: [] }
   ]
 };
