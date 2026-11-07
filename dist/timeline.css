@@ -39,8 +39,9 @@
 .case-card-meta { color:#36617e; }
 .case-state { color:#075c90; margin-top:auto; }
 .journey-empty { padding:1.2rem; background:#edf5fa; color:#223248; }
-.mobile-case-panel { display:block; grid-column:1/-1; margin:1.6rem 0 1rem; overflow:hidden; }
+.mobile-case-panel { display:block; grid-column:1/-1; margin:1.6rem 0 1rem; max-height:0; overflow:hidden; opacity:0; transform:translateY(-1rem); transition:max-height .68s cubic-bezier(.2,.8,.2,1),opacity .25s ease,transform .5s cubic-bezier(.2,.8,.2,1); }
 .mobile-case-panel[hidden] { display:none; }
+.mobile-case-panel.is-open { max-height:42rem; opacity:1; transform:none; }
 .mobile-case-panel .case-card { grid-template-columns:minmax(15rem,.85fr) minmax(0,1.15fr); min-height:18rem; padding:0; border-color:#25547f; }
 .mobile-case-panel .case-card-media { min-height:18rem; }
 .mobile-case-panel .case-card-body { padding:clamp(1.4rem,3vw,2.6rem); font-size:clamp(.85rem,1.35vw,1rem); }
@@ -50,6 +51,7 @@
 @media (max-width: 720px), (hover: none) {
   .journey-layout { grid-template-columns:1fr; }
   .mobile-case-panel { grid-column:2; margin:1.4rem 0 0 clamp(2.5rem,6vw,7.5rem); }
+  .mobile-case-panel, .mobile-case-panel.is-open { max-height:none; opacity:1; transform:none; transition:none; }
   .journey-milestone { padding-bottom:3rem; }
 }
 

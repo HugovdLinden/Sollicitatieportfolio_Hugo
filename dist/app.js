@@ -23,12 +23,13 @@
   function activate(element) {
     const item = timeline[Number(element.dataset.index)];
     if (!item || !casesFor(item).length) return;
-    host.querySelectorAll(".journey-milestone.is-active").forEach(node => { node.classList.remove("is-active"); const panel = node.querySelector(".mobile-case-panel"); if (panel) panel.hidden = true; });
+    host.querySelectorAll(".journey-milestone.is-active").forEach(node => { node.classList.remove("is-active"); const panel = node.querySelector(".mobile-case-panel"); if (panel) { panel.classList.remove("is-open"); clearTimeout(panel._hideTimer); panel._hideTimer = setTimeout(() => { if (!node.classList.contains("is-active")) panel.hidden = true; }, 520); } });
     element.classList.add("is-active");
     const projectPanel = element.querySelector(".mobile-case-panel");
     if (!mobileJourney.matches && projectPanel) {
       projectPanel.hidden = false;
       element.querySelector(".milestone-select").setAttribute("aria-expanded", "true");
+      requestAnimationFrame(() => projectPanel.classList.add("is-open"));
     }
   }
   const interactive = [...host.querySelectorAll(".journey-milestone.has-cases")];
@@ -39,7 +40,7 @@
       if (!mobileJourney.matches) {
         item.classList.remove("is-active");
         const projectPanel = item.querySelector(".mobile-case-panel");
-        if (projectPanel) projectPanel.hidden = true;
+        if (projectPanel) { projectPanel.classList.remove("is-open"); clearTimeout(projectPanel._hideTimer); projectPanel._hideTimer = setTimeout(() => { if (!item.classList.contains("is-active")) projectPanel.hidden = true; }, 520); }
         item.querySelector(".milestone-select").setAttribute("aria-expanded", "false");
       }
     });
@@ -51,10 +52,12 @@
       interactive.forEach(other => { other.querySelector(".milestone-select").setAttribute("aria-expanded", "false"); const otherPanel = other.querySelector(".mobile-case-panel"); if (otherPanel) otherPanel.hidden = true; });
       button.setAttribute("aria-expanded", String(!open));
       mobilePanel.hidden = open;
+      mobilePanel.classList.toggle("is-open", !open);
       if (!open) activate(item);
     });
   });
   document.querySelector("#year").textContent = new Date().getFullYear();
+  if (reduceMotion) document.querySelectorAll(".mobile-case-panel").forEach(panel => panel.style.transition = "none");
   if (!reduceMotion && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .12 });
     document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
