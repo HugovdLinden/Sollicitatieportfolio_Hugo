@@ -1,0 +1,4 @@
+.compal-brief{margin:0 0 7rem;background:#071ca2;padding:clamp(.6rem,2vw,1.5rem)}
+.compal-brief img{display:block;width:100%;height:auto}
+.compal-brief figcaption{margin-top:.7rem;font:500 .65rem/1.35 var(--mono);color:#e9eaff}
+@media(max-width:720px){.compal-brief{margin-bottom:4rem}}
