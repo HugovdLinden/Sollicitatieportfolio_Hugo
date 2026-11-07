@@ -10,6 +10,7 @@ window.PORTFOLIO = {
     "grabable": { id: "grabable", slug: "grabable", milestone: "ipd-bsc", title: "Grabable", source: "University of Bologna · Montecatone Rehabilitation Institute", type: "Graduation project", summary: "An adjustable hand exoskeleton developed to support grasping for people with hand paralysis after a spinal stroke.", year: "2023", cover: "grabable-cover.png", public: true },
     "arma": { id: "arma", slug: "arma", milestone: "dfi", title: "ARMA", source: "TU Delft · Child & Play Perspectives", type: "Co-design & play concept", summary: "A collaborative play ball shaped with children to support participation across communication barriers.", year: "2025—2026", cover: "arma-play.png", public: true },
     "thetford": { id: "thetford", slug: "thetford", milestone: "ipd-bsc", title: "Thetford Fridge Interior", source: "Thetford · Rotterdam University of Applied Sciences", type: "Product design", summary: "A modular restraint system that keeps camper and caravan fridge contents stable, accessible and quiet while travelling.", year: "Year 2", cover: "thetford-fridge.png", public: true },
+    "relaxi": { id: "relaxi", slug: "relaxi", milestone: "ipd-bsc", title: "Relaxi", source: "Vegro · Rotterdam University of Applied Sciences", type: "Care product & interaction", summary: "A calming, inflatable hand-resting product that turns touch into a gentle sensory moment for people with dementia.", year: "Year 3", cover: "relaxi-hero.png", public: true },
     "easyfelt-rd": { id: "easyfelt-rd", slug: "easyfelt", milestone: "easyfelt", title: "Case in development", source: "EASYfelt", type: "R&D work", summary: "A public-safe case is in preparation. Confidential development work remains private.", year: "2024—present", cover: null, public: false },
     "3d-next-level": { id: "3d-next-level", slug: "3d-next-level", milestone: "3d-next-level", title: "Fair-ride seat", source: "3D Next Level", type: "Creative engineering", summary: "A real-scale seat concept developed for a fair attraction.", year: "2021—2022", cover: "fairground-seat.png", public: true }
   },
@@ -20,7 +21,7 @@ window.PORTFOLIO = {
     { id: "bridging", kind: "education", period: "2025", title: "Bridging programme DFI", meta: "TU Delft", copy: "WO · Succeeded", projects: ["bendable-cutlery", "twogather"] },
     { id: "bologna", kind: "education", period: "2022—2023", title: "Advanced Design", meta: "University of Bologna", copy: "Magistrale · Minor and graduation", projects: ["hygea"] },
     { id: "3d-next-level", kind: "work", period: "2021—2022", title: "3D Next Level", meta: "Creative engineer", copy: "Concepts and engineering", projects: ["3d-next-level"] },
-    { id: "ipd-bsc", kind: "education", period: "2019—2023", title: "Industrial Product Design", meta: "Rotterdam University of Applied Sciences", copy: "HBO BSc · Propedeuse and graduation", projects: ["grabable", "thetford"] },
+    { id: "ipd-bsc", kind: "education", period: "2019—2023", title: "Industrial Product Design", meta: "Rotterdam University of Applied Sciences", copy: "HBO BSc · Propedeuse and graduation", projects: ["grabable", "thetford", "relaxi"] },
     { id: "secondary", kind: "education", period: "2014—2019", title: "HAVO-NT/NG", meta: "Stanislascollege Westplantsoen", copy: "High school study programme · Graduated", projects: [] }
   ]
 };
