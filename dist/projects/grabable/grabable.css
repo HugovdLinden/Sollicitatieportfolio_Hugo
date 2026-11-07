@@ -1,0 +1,8 @@
+.case-gallery figure,.case-feature-image{margin:0}
+.case-gallery figcaption,.case-feature-image figcaption{font:500 .65rem/1.35 var(--mono);color:var(--muted);margin-top:.7rem}
+.grabable-process-gallery{align-items:start}
+.grabable-process-gallery figure:first-child img{object-fit:contain;background:#f0f0ed}
+.grabable-process-gallery figure:last-child img{min-height:360px}
+.case-feature-image{margin:-2rem 0 7rem;background:#fff;padding:clamp(.6rem,2vw,1.5rem)}
+.case-feature-image img{width:100%;display:block;height:auto}
+@media(max-width:720px){.grabable-process-gallery figure:last-child img{min-height:260px}.case-feature-image{margin:-1rem 0 4rem}}
