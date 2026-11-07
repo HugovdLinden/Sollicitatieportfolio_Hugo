@@ -3,7 +3,7 @@
   const host = document.querySelector("#timeline");
   const preview = document.querySelector("#journey-preview");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const mobileJourney = matchMedia("(max-width: 900px)");
+  const mobileJourney = matchMedia("(max-width: 720px), (hover: none)");
   const esc = value => String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
   const casesFor = milestone => milestone.projects.map(id => projects[id]).filter(Boolean);
   const card = project => {
