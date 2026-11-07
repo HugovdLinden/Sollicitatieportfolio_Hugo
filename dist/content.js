@@ -1,7 +1,7 @@
 /* Public-safe project registry. Add a cover and set public: true only after approval. */
 window.PORTFOLIO = {
   projects: {
-    "ipd-journey": { id: "ipd-journey", slug: "integrated-product-design", milestone: "ipd", title: "Coming soon", source: "Master's project", type: "Confidential case", summary: "A current master's project will be shared once it is ready for publication.", year: "2026—2027", cover: null, public: false, status: "Coming soon" },
+    "ipd-journey": { id: "ipd-journey", slug: "integrated-product-design", milestone: "ipd", title: "Logitech — Coming soon", source: "Logitech", type: "Master's project", summary: "A confidential master's project in collaboration with Logitech. The case will be shared after its release.", year: "2026—2027", cover: null, logo: "logitech-logo.png", public: false, status: "Coming soon" },
     "easyfelt-rd": { id: "easyfelt-rd", slug: "easyfelt", milestone: "easyfelt", title: "Case in development", source: "EASYfelt", type: "R&D work", summary: "A public-safe case is in preparation. Confidential development work remains private.", year: "2024—present", cover: null, public: false },
     "3d-next-level": { id: "3d-next-level", slug: "3d-next-level", milestone: "3d-next-level", title: "Case in development", source: "3D Next Level", type: "Creative engineering", summary: "A public-safe case is in preparation. Client and employer material is not shown here.", year: "2021—2022", cover: null, public: false }
   },

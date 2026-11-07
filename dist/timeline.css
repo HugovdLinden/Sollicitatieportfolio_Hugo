@@ -37,6 +37,7 @@
 .case-card:hover, .case-card:focus-visible { border-color:#58b6e7; outline:none; transform:translateY(-2px); }
 .case-card-media { display:grid; place-items:center; overflow:hidden; background:#25547f; color:#c9eeff; font:500 1.8rem var(--mono); }
 .case-card-media img { width:100%; height:100%; object-fit:cover; }
+.case-card-media img.case-card-logo { object-fit:contain; padding:.5rem; }
 .case-card-body { display:flex; flex-direction:column; gap:.35rem; font-size:.77rem; line-height:1.35; }
 .case-card-body strong { font-size:1.02rem; letter-spacing:-.025em; }
 .case-card-meta, .case-state { font:500 .59rem/1.35 var(--mono); letter-spacing:.06em; text-transform:uppercase; }
@@ -66,3 +67,4 @@
 .development-case h1 em { font-family:var(--serif); font-weight:500; }
 .development-case>p:not(.eyebrow) { max-width:40rem; font-size:clamp(1.1rem,2vw,1.4rem); margin-bottom:2.5rem; }
 .development-case .arrow-link { color:inherit; border-color:#9edcff; }
+.case-brand-logo { display:block; width:min(16rem,55vw); max-height:6rem; margin:0 0 2.5rem; object-fit:contain; object-position:left center; }
