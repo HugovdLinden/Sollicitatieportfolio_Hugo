@@ -56,6 +56,7 @@
 }
 
 @media (max-width: 720px) {
+  .journey-layout .timeline::before { left:5.45rem; }
   .timeline-item { grid-template-columns:6rem minmax(0,1fr); }
   .milestone-select { font-size:clamp(1.8rem,8vw,2.5rem); }
   .timeline-content { margin-left:2.5rem; padding-left:0; }
