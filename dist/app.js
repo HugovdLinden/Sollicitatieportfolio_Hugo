@@ -3,6 +3,7 @@
   const host = document.querySelector("#timeline");
   const preview = document.querySelector("#journey-preview");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mobileJourney = matchMedia("(max-width: 900px)");
   const esc = value => String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
   const casesFor = milestone => milestone.projects.map(id => projects[id]).filter(Boolean);
   const card = project => {
@@ -33,6 +34,7 @@
     item.addEventListener("focusin", () => activate(item));
     const button = item.querySelector(".milestone-select");
     button.addEventListener("click", () => {
+      if (!mobileJourney.matches) return;
       const mobilePanel = item.querySelector(".mobile-case-panel");
       const open = button.getAttribute("aria-expanded") === "true";
       interactive.forEach(other => { other.querySelector(".milestone-select").setAttribute("aria-expanded", "false"); const otherPanel = other.querySelector(".mobile-case-panel"); if (otherPanel) otherPanel.hidden = true; });

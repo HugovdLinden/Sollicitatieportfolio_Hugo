@@ -68,3 +68,10 @@
 .development-case>p:not(.eyebrow) { max-width:40rem; font-size:clamp(1.1rem,2vw,1.4rem); margin-bottom:2.5rem; }
 .development-case .arrow-link { color:inherit; border-color:#9edcff; }
 .case-brand-logo { display:block; width:min(16rem,55vw); max-height:6rem; margin:0 0 2.5rem; object-fit:contain; object-position:left center; }
+.grabable-hero>img { object-position:center; }
+.case-video { margin:0 0 7rem; background:#090909; }
+.case-video video { display:block; width:100%; max-height:80vh; }
+
+@media (min-width: 901px) {
+  .milestone-arrow { display:none; }
+}
