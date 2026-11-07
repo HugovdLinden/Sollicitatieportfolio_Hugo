@@ -1,1 +1,50 @@
-(function(){const{timeline,projects}=window.PORTFOLIO,host=document.querySelector('#timeline');host.innerHTML=timeline.map(item=>{if(item.type==='text')return`<article class="timeline-item text-item reveal"><div class="timeline-date">${item.period}</div><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-content"><p class="timeline-meta">${item.meta}</p><h3>${item.title}</h3><p>${item.copy}</p></div></article>`;const p=projects[item.slug];return`<article class="timeline-item project-item reveal"><div class="timeline-date">${p.period}</div><div class="timeline-dot" aria-hidden="true"></div><a class="project-preview" href="projects/${item.slug}/" aria-label="View case study: ${p.title}"><img src="assets/${p.image}" alt="${p.title}" loading="lazy"><div class="project-overlay"><p class="timeline-meta">${p.phase}</p><h3>${p.title}</h3><p>${p.summary}</p><span>View case study <b aria-hidden="true">↗</b></span></div></a></article>`}).join('');document.querySelector('#year').textContent=new Date().getFullYear();if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');o.unobserve(x.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>o.observe(e))}else document.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible'))})();
+(function () {
+  const { timeline, projects } = window.PORTFOLIO;
+  const host = document.querySelector("#timeline");
+  const preview = document.querySelector("#journey-preview");
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = value => String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
+  const casesFor = milestone => milestone.projects.map(id => projects[id]).filter(Boolean);
+  const card = project => {
+    const image = project.public && project.cover ? `<img src="assets/${esc(project.cover)}" alt="${esc(project.title)}" loading="lazy">` : "";
+    const state = project.public ? "" : '<span class="case-state">Case in development</span>';
+    return `<a class="case-card ${project.public ? "" : "is-development"}" href="projects/${esc(project.slug)}/"><span class="case-card-media">${image}<span class="case-card-placeholder" aria-hidden="true">↗</span></span><span class="case-card-body"><span class="case-card-meta">${esc(project.source)} · ${esc(project.type)}</span><strong>${esc(project.title)}</strong><span>${esc(project.summary)}</span>${state}</span></a>`;
+  };
+  const panel = milestone => {
+    const cases = casesFor(milestone);
+    return cases.length ? `<div class="case-card-list">${cases.map(card).join("")}</div>` : `<div class="journey-empty"><p class="eyebrow">${milestone.kind === "work" ? "Work milestone" : "Education milestone"}</p><p>No public case is linked to this milestone yet.</p></div>`;
+  };
+  const milestone = (item, index) => {
+    const hasCases = casesFor(item).length > 0;
+    const control = hasCases ? `<button class="milestone-select" type="button" aria-expanded="false" aria-controls="mobile-panel-${esc(item.id)}"><span class="sr-only">Show related cases for </span>${esc(item.title)}<span class="milestone-arrow" aria-hidden="true">↓</span></button>` : `<h3>${esc(item.title)}</h3>`;
+    return `<article class="timeline-item journey-milestone reveal ${hasCases ? "has-cases" : ""}" data-milestone="${esc(item.id)}" data-index="${index}"><div class="timeline-date">${esc(item.period)}</div><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-content"><p class="timeline-meta">${esc(item.meta)} · ${item.kind}</p>${control}<p>${esc(item.copy)}</p></div>${hasCases ? `<div class="mobile-case-panel" id="mobile-panel-${esc(item.id)}" hidden>${panel(item)}</div>` : ""}</article>`;
+  };
+  host.innerHTML = timeline.map(milestone).join("");
+  function activate(element) {
+    const item = timeline[Number(element.dataset.index)];
+    if (!item || !casesFor(item).length) return;
+    host.querySelectorAll(".journey-milestone.is-active").forEach(node => node.classList.remove("is-active"));
+    element.classList.add("is-active");
+    preview.innerHTML = `<p class="eyebrow">Selected milestone</p><p class="preview-period">${esc(item.period)}</p><h3>${esc(item.title)}</h3><p class="preview-copy">Related public cases and work-in-progress.</p>${panel(item)}`;
+  }
+  const interactive = [...host.querySelectorAll(".journey-milestone.has-cases")];
+  interactive.forEach(item => {
+    item.addEventListener("mouseenter", () => activate(item));
+    item.addEventListener("focusin", () => activate(item));
+    const button = item.querySelector(".milestone-select");
+    button.addEventListener("click", () => {
+      const mobilePanel = item.querySelector(".mobile-case-panel");
+      const open = button.getAttribute("aria-expanded") === "true";
+      interactive.forEach(other => { other.querySelector(".milestone-select").setAttribute("aria-expanded", "false"); const otherPanel = other.querySelector(".mobile-case-panel"); if (otherPanel) otherPanel.hidden = true; });
+      button.setAttribute("aria-expanded", String(!open));
+      mobilePanel.hidden = open;
+      if (!open) activate(item);
+    });
+  });
+  if (interactive.length) activate(interactive[0]);
+  document.querySelector("#year").textContent = new Date().getFullYear();
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+  } else document.querySelectorAll(".reveal").forEach(element => element.classList.add("visible"));
+}());

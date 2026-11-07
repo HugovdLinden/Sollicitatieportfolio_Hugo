@@ -16,3 +16,53 @@
   .timeline-dot { left: 4.875rem; width: 1.15rem; height: 1.15rem; border-width: 3px; }
   .timeline-content, .project-preview { margin-left: 1.8rem; }
 }
+
+/* Interactive journey: a desktop sticky case preview with accessible mobile disclosure. */
+.journey-layout { display:grid; grid-template-columns:minmax(0, 1.08fr) minmax(18rem, .72fr); gap:clamp(2rem,5vw,6rem); align-items:start; }
+.journey-layout .timeline::before { left:calc(25% - 2px); }
+.journey-preview { position:sticky; top:1.5rem; min-height:28rem; padding:1.6rem; background:#101f3e; color:#f8f7f2; border-radius:.15rem; }
+.journey-preview .eyebrow, .journey-preview .case-card-meta { color:#9edcff; }
+.journey-preview h3 { font-size:clamp(2rem,3.3vw,3.5rem); line-height:.88; letter-spacing:-.065em; margin:.4rem 0 .7rem; }
+.preview-period { font:500 .72rem var(--mono); margin:0; color:#d8ebf7; }
+.preview-copy { color:#c8d4e2; margin:0 0 1.3rem; }
+.journey-milestone.has-cases .timeline-dot { background:#2e93cc; box-shadow:0 0 0 5px #dceffc; }
+.journey-milestone.is-active .timeline-dot { background:#061b44; border-color:#2e93cc; box-shadow:0 0 0 7px #aee2ff; }
+.journey-milestone.has-cases .timeline-content { border-radius:.2rem; }
+.milestone-select { appearance:none; border:0; padding:0; background:transparent; color:inherit; cursor:pointer; text-align:left; font:inherit; font-size:clamp(1.8rem,3vw,2.8rem); line-height:.92; letter-spacing:-.06em; font-weight:700; }
+.milestone-select:hover, .milestone-select:focus-visible { color:#087cba; }
+.milestone-select:focus-visible { outline:3px solid #087cba; outline-offset:5px; }
+.milestone-arrow { display:inline-block; margin-left:.5rem; font:400 .85em var(--mono); transform:rotate(-45deg); }
+.case-card-list { display:grid; gap:.8rem; }
+.case-card { display:grid; grid-template-columns:5.5rem 1fr; gap:.8rem; min-height:7rem; padding:.65rem; background:#f8f7f2; color:#111312; text-decoration:none; border:1px solid transparent; }
+.case-card:hover, .case-card:focus-visible { border-color:#58b6e7; outline:none; transform:translateY(-2px); }
+.case-card-media { display:grid; place-items:center; overflow:hidden; background:#25547f; color:#c9eeff; font:500 1.8rem var(--mono); }
+.case-card-media img { width:100%; height:100%; object-fit:cover; }
+.case-card-body { display:flex; flex-direction:column; gap:.35rem; font-size:.77rem; line-height:1.35; }
+.case-card-body strong { font-size:1.02rem; letter-spacing:-.025em; }
+.case-card-meta, .case-state { font:500 .59rem/1.35 var(--mono); letter-spacing:.06em; text-transform:uppercase; }
+.case-card-meta { color:#36617e; }
+.case-state { color:#075c90; margin-top:auto; }
+.journey-empty { padding:1.2rem; background:#edf5fa; color:#223248; }
+.mobile-case-panel { display:none; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+@media (max-width: 900px) {
+  .journey-layout { grid-template-columns:1fr; }
+  .journey-preview { display:none; }
+  .mobile-case-panel { display:block; grid-column:2; margin:1.4rem 0 0 clamp(2.5rem,6vw,7.5rem); }
+  .mobile-case-panel[hidden] { display:none; }
+  .journey-milestone { padding-bottom:3rem; }
+}
+
+@media (max-width: 720px) {
+  .milestone-select { font-size:clamp(1.8rem,8vw,2.5rem); }
+  .mobile-case-panel { grid-column:2; margin-left:1.8rem; }
+  .case-card { grid-template-columns:4.5rem 1fr; }
+}
+
+.development-case { min-height:calc(100vh - 5rem); max-width:1440px; margin:auto; padding:clamp(5rem,13vw,12rem) clamp(1.25rem,8vw,10rem); background:#10274e; color:#f8f7f2; }
+.development-case .eyebrow { color:#9edcff; }
+.development-case h1 { font-size:clamp(4rem,10vw,10rem); line-height:.8; letter-spacing:-.08em; margin:.7rem 0 2rem; }
+.development-case h1 em { font-family:var(--serif); font-weight:500; }
+.development-case>p:not(.eyebrow) { max-width:40rem; font-size:clamp(1.1rem,2vw,1.4rem); margin-bottom:2.5rem; }
+.development-case .arrow-link { color:inherit; border-color:#9edcff; }
