@@ -78,6 +78,8 @@
   .mobile-case-panel .case-card-media { min-height:0; }
   .mobile-case-panel .case-card-body { min-height:12rem; max-width:100%; padding:1.2rem; font-size:.77rem; }
   .mobile-case-panel .case-card-body strong { font-size:clamp(1.35rem,6vw,2rem); }
+  .case-card-list { display:flex; gap:.75rem; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:thin; padding:.1rem .1rem .8rem; }
+  .case-card-list .case-card { flex:0 0 92%; height:clamp(18rem,76vw,24rem); min-height:0; scroll-snap-align:start; }
 }
 
 .development-case { min-height:calc(100vh - 5rem); max-width:1440px; margin:auto; padding:clamp(5rem,13vw,12rem) clamp(1.25rem,8vw,10rem); background:#10274e; color:#f8f7f2; }
