@@ -47,7 +47,7 @@
   }
   function activate(element) {
     const item = timeline[Number(element.dataset.index)];
-    if (!item || !casesFor(item).length) return;
+    if (!item || !casesFor(item).length || element.classList.contains("is-active")) return;
     interactive.forEach(node => { if (node !== element) setPanelOpen(node, false); });
     setPanelOpen(element, true);
   }
@@ -84,6 +84,17 @@
       });
     }
   });
+  // Let the timeline lead the interaction while scrolling: the related cases
+  // emerge as each highlighted milestone passes through the reading zone.
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    const storyObserver = new IntersectionObserver(entries => {
+      const candidate = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (candidate) activate(candidate.target);
+    }, { rootMargin: "-36% 0px -44% 0px", threshold: [0, .12, .35] });
+    interactive.forEach(item => storyObserver.observe(item));
+  }
   document.querySelector("#year").textContent = new Date().getFullYear();
   if (reduceMotion) document.querySelectorAll(".mobile-case-panel").forEach(panel => panel.style.transition = "none");
   if (!reduceMotion && "IntersectionObserver" in window) {
