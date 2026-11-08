@@ -71,6 +71,12 @@
     if (rail) {
       rail.addEventListener("wheel", event => {
         if (disclosureMode.matches || rail.scrollWidth <= rail.clientWidth || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
+        const maxScroll = rail.scrollWidth - rail.clientWidth;
+        const atStart = rail.scrollLeft <= 1;
+        const atEnd = rail.scrollLeft >= maxScroll - 1;
+        // Hand the wheel back to the page once the horizontal rail has reached
+        // the relevant edge, so a visitor can continue through the journey.
+        if ((event.deltaY < 0 && atStart) || (event.deltaY > 0 && atEnd)) return;
         event.preventDefault();
         rail.scrollBy({ left: event.deltaY, behavior: reduceMotion ? "auto" : "smooth" });
       }, { passive: false });
