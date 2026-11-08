@@ -57,9 +57,6 @@
       if (!disclosureMode.matches && event.pointerType !== "touch") activate(item);
     });
     item.addEventListener("focusin", () => activate(item));
-    item.addEventListener("pointerleave", event => {
-      if (!disclosureMode.matches && event.pointerType !== "touch") setPanelOpen(item, false);
-    });
     const button = item.querySelector(".milestone-select");
     button.addEventListener("click", () => {
       if (!disclosureMode.matches) return;
