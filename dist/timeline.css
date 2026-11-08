@@ -34,7 +34,6 @@
 .case-card:hover, .case-card:focus-visible { border-color:#58b6e7; outline:none; transform:translateY(-2px); }
 .case-card-media { grid-column:2; grid-row:1; position:relative; display:grid; place-items:center; overflow:hidden; background:#fff; border-left:1px solid #d7dde3; color:#23375f; font:500 1.8rem var(--mono); }
 .case-card-media img { width:100%; height:100%; padding:.25rem; object-fit:contain; }
-.case-card-media img:not(.case-card-logo):not(.case-card-brand) { transform:scale(1.05); transform-origin:center; }
 .case-card-media img.case-card-logo { object-fit:contain; padding:.5rem; }
 .case-card-media img.case-card-brand { position:absolute; z-index:1; left:.6rem; bottom:.6rem; width:auto; max-width:7.5rem; height:2rem; object-fit:contain; object-position:left center; padding:.3rem .5rem; background:rgba(255,255,255,.92); border-radius:.1rem; }
 .case-card-body { grid-column:1; grid-row:1; display:flex; min-height:0; height:100%; flex-direction:column; justify-content:center; gap:.5rem; max-width:none; padding:clamp(1.2rem,2.2vw,2rem); font-size:clamp(.82rem,1.25vw,1rem); line-height:1.45; }
