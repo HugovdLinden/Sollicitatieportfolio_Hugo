@@ -11,7 +11,7 @@
     const image = project.public && project.cover ? `<img src="assets/${esc(project.cover)}" alt="${esc(project.title)}" loading="lazy">` : (project.logo ? `<img class="case-card-logo" src="assets/${esc(project.logo)}" alt="${esc(project.source)}" loading="lazy">` : "");
     const brand = project.public && project.logo ? `<img class="case-card-brand" src="assets/${esc(project.logo)}" alt="${esc(project.source)}" loading="lazy">` : "";
     const state = project.public ? "" : `<span class="case-state">${esc(project.status || "Case in development")}</span>`;
-    return `<a class="case-card scroll-project ${project.public ? "" : "is-development"}" href="projects/${esc(project.slug)}/"><span class="case-card-media">${image}${brand}<span class="case-card-placeholder" aria-hidden="true">↗</span></span><span class="case-card-body"><span class="case-card-meta">${esc(project.source)} · ${esc(project.type)}</span><strong>${esc(project.title)}</strong><span>${esc(project.summary)}</span>${state}</span></a>`;
+    return `<a class="case-card ${project.public ? "" : "is-development"}" href="projects/${esc(project.slug)}/"><span class="case-card-media">${image}${brand}<span class="case-card-placeholder" aria-hidden="true">↗</span></span><span class="case-card-body"><span class="case-card-meta">${esc(project.source)} · ${esc(project.type)}</span><strong>${esc(project.title)}</strong><span>${esc(project.summary)}</span>${state}</span></a>`;
   };
   const panel = milestone => {
     const cases = casesFor(milestone);
@@ -47,7 +47,7 @@
   }
   function activate(element) {
     const item = timeline[Number(element.dataset.index)];
-    if (!item || !casesFor(item).length || element.classList.contains("is-active")) return;
+    if (!item || !casesFor(item).length) return;
     interactive.forEach(node => { if (node !== element) setPanelOpen(node, false); });
     setPanelOpen(element, true);
   }
@@ -84,21 +84,10 @@
       });
     }
   });
-  // Let the timeline lead the interaction while scrolling: the related cases
-  // emerge as each highlighted milestone passes through the reading zone.
-  if (!reduceMotion && "IntersectionObserver" in window) {
-    const storyObserver = new IntersectionObserver(entries => {
-      const candidate = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (candidate) activate(candidate.target);
-    }, { rootMargin: "-36% 0px -44% 0px", threshold: [0, .12, .35] });
-    interactive.forEach(item => storyObserver.observe(item));
-  }
   document.querySelector("#year").textContent = new Date().getFullYear();
   if (reduceMotion) document.querySelectorAll(".mobile-case-panel").forEach(panel => panel.style.transition = "none");
   if (!reduceMotion && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }), { threshold: .12 });
-    document.querySelectorAll(".reveal, .scroll-project").forEach(element => observer.observe(element));
-  } else document.querySelectorAll(".reveal, .scroll-project").forEach(element => element.classList.add("visible"));
+    document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+  } else document.querySelectorAll(".reveal").forEach(element => element.classList.add("visible"));
 }());
