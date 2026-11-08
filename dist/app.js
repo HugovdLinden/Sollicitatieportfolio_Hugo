@@ -48,16 +48,8 @@
   function activate(element) {
     const item = timeline[Number(element.dataset.index)];
     if (!item || !casesFor(item).length) return;
-    const anchorTop = element.getBoundingClientRect().top;
-    // Close the previous rail immediately, then compensate for its removed
-    // height. This keeps the newly selected horizontal rail at its current
-    // vertical position instead of pulling it up the page.
-    interactive.forEach(node => { if (node !== element) setPanelOpen(node, false, false); });
+    interactive.forEach(node => { if (node !== element) setPanelOpen(node, false); });
     setPanelOpen(element, true);
-    requestAnimationFrame(() => {
-      const shift = element.getBoundingClientRect().top - anchorTop;
-      if (Math.abs(shift) > 1) window.scrollBy({ top: shift, behavior: "auto" });
-    });
   }
   const interactive = [...host.querySelectorAll(".journey-milestone.has-cases")];
   interactive.forEach(item => {
