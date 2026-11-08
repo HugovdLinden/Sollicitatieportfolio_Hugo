@@ -1,4 +1,4 @@
-.emi-assembly{margin:0 0 7rem;background:#fff;padding:clamp(.6rem,2vw,1.5rem)}
-.emi-assembly img{display:block;width:100%;height:auto}
-.emi-assembly figcaption{margin-top:.7rem;font:500 .65rem/1.35 var(--mono);color:var(--muted)}
-@media(max-width:720px){.emi-assembly{margin-bottom:4rem}}
+.emi-assembly,.emi-sketch{margin:0 0 7rem;background:#fff;padding:clamp(.6rem,2vw,1.5rem)}
+.emi-assembly img,.emi-sketch img{display:block;width:100%;height:auto}
+.emi-assembly figcaption,.emi-sketch figcaption{margin-top:.7rem;font:500 .65rem/1.35 var(--mono);color:var(--muted)}
+@media(max-width:720px){.emi-assembly,.emi-sketch{margin-bottom:4rem}}
