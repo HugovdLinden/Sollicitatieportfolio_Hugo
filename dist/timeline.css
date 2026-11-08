@@ -36,11 +36,14 @@
 .case-card-media img { display:block; box-sizing:border-box; width:100%; height:100%; max-width:100%; max-height:100%; padding:.5rem; object-fit:contain; object-position:center; }
 .case-card-media img.case-card-logo { object-fit:contain; padding:.5rem; }
 .case-card-media img.case-card-brand { position:absolute; z-index:1; left:.6rem; bottom:.6rem; width:auto; max-width:7.5rem; height:2rem; object-fit:contain; object-position:left center; padding:.3rem .5rem; background:rgba(255,255,255,.92); border-radius:.1rem; }
-.project-apex-seat .case-card-media > img { transform:scale(.72); }
+.project-apex-seat .case-card-media > img { align-self:start; transform:scale(1); transform-origin:top center; }
 .project-bendable-cutlery .case-card-media > img,
-.project-3d-next-level .case-card-media > img,
 .project-thetford .case-card-media > img { transform:scale(.9); }
-.project-ipd-journey .case-card-media > img.case-card-logo { width:50%; height:50%; max-width:50%; max-height:50%; padding:0; object-position:center; }
+.project-ipd-journey .case-card-media > img.case-card-logo { width:100%; height:100%; max-width:100%; max-height:100%; padding:.5rem; object-position:center; }
+.project-twogather .case-card-media > img,
+.project-3d-next-level .case-card-media > img,
+.project-relaxi .case-card-media > img,
+.project-kehuta .case-card-media > img { align-self:start; transform:scale(.9); transform-origin:top center; }
 .case-card-body { grid-column:1; grid-row:1; display:flex; min-height:0; height:100%; flex-direction:column; justify-content:center; gap:.5rem; max-width:none; padding:clamp(1.2rem,2.2vw,2rem); font-size:clamp(.82rem,1.25vw,1rem); line-height:1.45; }
 .case-card-body strong { font-size:clamp(1.35rem,2.4vw,2.25rem); line-height:.98; letter-spacing:-.045em; }
 .case-card-meta, .case-state { font:500 .59rem/1.35 var(--mono); letter-spacing:.06em; text-transform:uppercase; }
