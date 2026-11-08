@@ -30,9 +30,10 @@
 .case-card-list { display:flex; gap:1rem; width:100%; max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-color:#58b6e7 #dceffc; scrollbar-width:thin; padding:.1rem .1rem .9rem; }
 .case-card { display:grid; grid-template-rows:10.5rem auto; gap:0; flex:0 0 clamp(20rem,42vw,32rem); min-height:0; scroll-snap-align:start; background:#f8f7f2; color:#111312; text-decoration:none; border:1px solid #25547f; }
 .case-card:hover, .case-card:focus-visible { border-color:#58b6e7; outline:none; transform:translateY(-2px); }
-.case-card-media { display:grid; place-items:center; overflow:hidden; background:#25547f; color:#c9eeff; font:500 1.8rem var(--mono); }
+.case-card-media { position:relative; display:grid; place-items:center; overflow:hidden; background:#25547f; color:#c9eeff; font:500 1.8rem var(--mono); }
 .case-card-media img { width:100%; height:100%; object-fit:cover; }
 .case-card-media img.case-card-logo { object-fit:contain; padding:.5rem; }
+.case-card-media img.case-card-brand { position:absolute; z-index:1; left:.6rem; bottom:.6rem; width:auto; max-width:7.5rem; height:2rem; object-fit:contain; object-position:left center; padding:.3rem .5rem; background:rgba(255,255,255,.92); border-radius:.1rem; }
 .case-card-body { display:flex; flex-direction:column; gap:.35rem; font-size:.77rem; line-height:1.35; }
 .case-card-body strong { font-size:1.02rem; letter-spacing:-.025em; }
 .case-card-meta, .case-state { font:500 .59rem/1.35 var(--mono); letter-spacing:.06em; text-transform:uppercase; }
