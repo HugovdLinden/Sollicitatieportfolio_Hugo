@@ -29,7 +29,7 @@
 .milestone-arrow { display:inline-block; margin-left:.5rem; font:400 .85em var(--mono); transform:rotate(-45deg); }
 .case-card-list { display:flex; gap:1rem; width:100%; max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-color:#58b6e7 #dceffc; scrollbar-width:thin; padding:.1rem .1rem .9rem; }
 /* Each case remains one stop in the horizontal rail, now presented as a full-width white project bar. */
-.case-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); position:relative; overflow:hidden; flex:0 0 100%; height:clamp(13rem,16vw,17rem); min-height:0; scroll-snap-align:start; background:#fff; color:#23375f; text-decoration:none; border:1px solid #d7dde3; }
+.case-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); position:relative; overflow:hidden; flex:0 0 100%; height:clamp(16rem,20vw,22rem); min-height:0; scroll-snap-align:start; background:#fff; color:#23375f; text-decoration:none; border:1px solid #d7dde3; }
 .case-card::after { display:none; }
 .case-card:hover, .case-card:focus-visible { border-color:#58b6e7; outline:none; transform:translateY(-2px); }
 .case-card-media { grid-column:2; grid-row:1; position:relative; display:grid; place-items:center; overflow:hidden; background:#fff; border-left:1px solid #d7dde3; color:#23375f; font:500 1.8rem var(--mono); }
