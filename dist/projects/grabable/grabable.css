@@ -5,4 +5,5 @@
 .grabable-process-gallery figure:last-child img{min-height:360px}
 .case-feature-image{margin:-2rem 0 7rem;background:#fff;padding:clamp(.6rem,2vw,1.5rem)}
 .case-feature-image img{width:100%;display:block;height:auto}
+.grabable-designloop-gallery{display:grid;gap:1.5rem;margin:-2rem 0 7rem}.grabable-designloop-gallery figure{margin:0;background:#f0f0ed;padding:clamp(.5rem,1.5vw,1rem)}.grabable-designloop-gallery img{display:block;width:100%;height:auto}.grabable-designloop-gallery figcaption{font:500 .65rem/1.35 var(--mono);color:var(--muted);margin-top:.7rem}
 @media(max-width:720px){.grabable-process-gallery figure:last-child img{min-height:260px}.case-feature-image{margin:-1rem 0 4rem}}
