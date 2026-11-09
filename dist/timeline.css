@@ -100,3 +100,11 @@
   .project-relaxi .case-card-media > img,
   .project-kehuta .case-card-media > img { align-self:start; transform:scale(.84); transform-origin:top center; }
 }
+
+/* Keep project imagery as prominent on phones as it is in the desktop rails. */
+@media (max-width:720px) {
+  .mobile-case-panel .case-card { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); }
+  .case-card-list .case-card { flex-basis:96%; height:clamp(20rem,84vw,27rem); }
+  .case-card-media img { padding:.25rem; }
+  .mobile-case-panel .case-card-media > img:not(.case-card-brand) { transform:scale(1); }
+}
