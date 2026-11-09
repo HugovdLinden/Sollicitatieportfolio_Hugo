@@ -2,6 +2,6 @@
 .compal-brief img{display:block;width:100%;height:auto}
 .compal-brief figcaption{margin-top:.7rem;font:500 .65rem/1.35 var(--mono);color:#e9eaff}
 .compal-hero>img{object-position:center}
-.compal-hero--nda{background:#071ca2}.compal-hero--nda:after{background:linear-gradient(135deg,rgba(2,12,74,.9),rgba(7,28,162,.72))}.compal-team{background:#f2f2ef}.compal-team figcaption{color:#23375f}
+.compal-hero--nda{background:#071ca2}.compal-hero--nda:after{background:linear-gradient(135deg,rgba(2,12,74,.86),rgba(7,28,162,.44))}.compal-hero--nda>img{object-position:center 58%}.compal-team{background:#f2f2ef}.compal-team figcaption{color:#23375f}
 .compal-gallery{display:grid;gap:1.5rem;margin:0 0 4rem}.compal-gallery figure{margin:0;background:#17243a;padding:clamp(.5rem,1.5vw,1rem)}.compal-gallery img{display:block;width:100%;height:auto}.compal-gallery figcaption{margin-top:.7rem;font:500 .65rem/1.35 var(--mono);color:#eaf0f4}
 @media(max-width:720px){.compal-brief{margin-bottom:4rem}}
