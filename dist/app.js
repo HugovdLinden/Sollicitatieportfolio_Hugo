@@ -148,6 +148,39 @@
   document.querySelectorAll(".skill-grid li").forEach(item => { const name=item.querySelector("b")?.textContent; if(name==="Rhino") { item.querySelector("span").textContent="3 / 5 · Intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",3); } if(name==="Grasshopper") { item.querySelector("span").textContent="3 / 5 · Intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",3); } });
 }());
 
+// Highlighted work advances automatically, but remains fully controllable.
+(function () {
+  const carousel = document.querySelector(".featured-carousel");
+  if (!carousel) return;
+  const track = carousel.querySelector(".featured-track");
+  const slides = [...carousel.querySelectorAll(".featured-slide")];
+  const dots = carousel.querySelector(".featured-dots");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let active = 0;
+  let timer;
+  const show = index => {
+    active = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${active * 100}%)`;
+    [...dots.children].forEach((dot, position) => dot.setAttribute("aria-current", String(position === active)));
+  };
+  slides.forEach((slide, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button"; dot.className = "featured-dot"; dot.setAttribute("aria-label", `Show highlighted project ${index + 1}`);
+    dot.addEventListener("click", () => { show(index); restart(); }); dots.append(dot);
+  });
+  const restart = () => {
+    clearInterval(timer);
+    if (!reduceMotion) timer = setInterval(() => show(active + 1), 6500);
+  };
+  carousel.querySelector(".featured-prev").addEventListener("click", () => { show(active - 1); restart(); });
+  carousel.querySelector(".featured-next").addEventListener("click", () => { show(active + 1); restart(); });
+  carousel.addEventListener("mouseenter", () => clearInterval(timer));
+  carousel.addEventListener("mouseleave", restart);
+  carousel.addEventListener("focusin", () => clearInterval(timer));
+  carousel.addEventListener("focusout", event => { if (!carousel.contains(event.relatedTarget)) restart(); });
+  show(0); restart();
+}());
+
 // Keep the home page concise; the complete personal story lives on its own page.
 (function () {
   const personalPreview = document.querySelector("#personal");
