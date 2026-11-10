@@ -154,6 +154,13 @@
   const carousel = document.querySelector(".featured-carousel");
   if (!carousel) return;
   const track = carousel.querySelector(".featured-track");
+  const compalSlide = track.querySelector('a[href="projects/compal-nurse-wearables/"]');
+  if (compalSlide) track.prepend(compalSlide);
+  const easyfeltImage = track.querySelector('a[href="projects/easyfelt/"] img');
+  if (easyfeltImage) {
+    easyfeltImage.src = "assets/easyfelt-fiora.jpg";
+    easyfeltImage.alt = "EASYfelt Luma Fiora acoustic pendant light";
+  }
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/apex-seat/"><img src="assets/apex-seat-aircell-lattice.png" alt="Aircell lattice structure developed for the Apex Seat"><span><p class="eyebrow">Computational design</p><h3>Apex Seat</h3><p>Responsive lattice structures for comfort and protection.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/3d-next-level/"><img src="assets/fair-ride-painting.png" alt="Spray-painting the Fair-ride seat prototype"><span><p class="eyebrow">Creative engineering</p><h3>Fair-ride seat</h3><p>Bringing a full-scale seat prototype to life.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   const slides = [...carousel.querySelectorAll(".featured-slide")];
