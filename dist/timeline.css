@@ -1,5 +1,7 @@
 /* Stronger, easier-to-scan chronology. */
 .timeline { isolation: isolate; }
+.journey-hint { max-width:42rem; margin:0 0 2rem auto; padding:1rem 1.2rem; border-left:4px solid #2e93cc; background:#edf5fa; color:#223248; font-size:.92rem; }
+.journey-hint strong { color:#061b44; }
 .timeline::before { left: calc(25% - 2px); width: 4px; }
 .timeline-item { grid-template-columns:minmax(12rem,25%) minmax(0,1fr); min-height: 11rem; padding-bottom: 5rem; }
 .timeline-date { min-width:100%; padding-right:clamp(2.5rem,4vw,4.5rem); color:var(--muted); overflow:visible; text-align:right; white-space:nowrap; }

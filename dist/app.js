@@ -23,6 +23,7 @@
     return `<article class="timeline-item journey-milestone reveal ${hasCases ? "has-cases" : ""}" data-milestone="${esc(item.id)}" data-index="${index}"><div class="timeline-date">${esc(item.period)}</div><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-content"><p class="timeline-meta">${esc(item.meta)} · ${item.kind}</p>${control}<p>${esc(item.copy)}</p></div>${hasCases ? `<div class="mobile-case-panel" id="mobile-panel-${esc(item.id)}" hidden>${panel(item)}</div>` : ""}</article>`;
   };
   host.innerHTML = timeline.map(milestone).join("");
+  host.insertAdjacentHTML("beforebegin", '<p class="journey-hint"><strong>Explore projects:</strong> tap a highlighted milestone to open its projects. When several projects appear, swipe the cards sideways to see more.</p>');
   function setPanelOpen(element, open, animate = true) {
     const button = element.querySelector(".milestone-select");
     const projectPanel = element.querySelector(".mobile-case-panel");
