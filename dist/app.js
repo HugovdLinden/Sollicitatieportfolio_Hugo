@@ -171,7 +171,7 @@
   });
   const restart = () => {
     clearInterval(timer);
-    if (!reduceMotion) timer = setInterval(() => show(active + 1), 5000);
+    if (!reduceMotion) timer = setInterval(() => show(active + 1), 3500);
   };
   carousel.querySelector(".featured-prev").addEventListener("click", () => { show(active - 1); restart(); });
   carousel.querySelector(".featured-next").addEventListener("click", () => { show(active + 1); restart(); });
