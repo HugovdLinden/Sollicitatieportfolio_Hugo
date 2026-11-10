@@ -145,7 +145,7 @@
   document.querySelectorAll(".adobe-skill").forEach(item => { const name = item.querySelector("b")?.textContent; const file = adobeLogos[name]; if (file) item.insertAdjacentHTML("afterbegin", `<img src="assets/skills/${file}" alt="${name} logo">`); });
   document.querySelectorAll(".adobe-skill span").forEach(level => level.textContent = "5 / 5 · Highly experienced");
   document.querySelectorAll(".adobe-skill").forEach(item => item.insertAdjacentHTML("beforeend", '<i class="skill-rating" style="--rating:5" aria-label="5 out of 5"></i>'));
-  document.querySelectorAll(".skill-grid li").forEach(item => { const name=item.querySelector("b")?.textContent; if(name==="Rhino") { item.querySelector("span").textContent="3 / 5 · Intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",3); } if(name==="Grasshopper") { item.querySelector("span").textContent="4 / 5 · Above intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",4); } });
+  document.querySelectorAll(".skill-grid li").forEach(item => { const name=item.querySelector("b")?.textContent; if(name==="Rhino") { item.querySelector("span").textContent="3 / 5 · Intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",3); } if(name==="Grasshopper") { item.querySelector("span").textContent="3 / 5 · Intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",3); } });
 }());
 
 // Keep the home page concise; the complete personal story lives on its own page.
