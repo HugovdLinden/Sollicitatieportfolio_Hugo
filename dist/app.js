@@ -155,6 +155,7 @@
   if (!carousel) return;
   const track = carousel.querySelector(".featured-track");
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/apex-seat/"><img src="assets/apex-seat-aircell-lattice.png" alt="Aircell lattice structure developed for the Apex Seat"><span><p class="eyebrow">Computational design</p><h3>Apex Seat</h3><p>Responsive lattice structures for comfort and protection.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
+  track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/3d-next-level/"><img src="assets/fair-ride-painting.png" alt="Spray-painting the Fair-ride seat prototype"><span><p class="eyebrow">Creative engineering</p><h3>Fair-ride seat</h3><p>Bringing a full-scale seat prototype to life.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   const slides = [...carousel.querySelectorAll(".featured-slide")];
   const dots = carousel.querySelector(".featured-dots");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
