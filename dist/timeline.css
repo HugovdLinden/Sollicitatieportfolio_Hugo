@@ -62,17 +62,23 @@
 }
 
 @media (max-width: 720px) {
-  .journey-layout .timeline::before { left:5.45rem; }
-  .timeline-item { grid-template-columns:6rem minmax(0,1fr); }
+  /* Keep dates in their own, wide-enough column.  The previous nested
+     indentation left long periods partly outside the available track. */
+  .journey-layout .timeline::before { left:5rem; }
+  .timeline-item { grid-template-columns:5.5rem minmax(0,1fr); }
+  .timeline-date { min-width:0; padding-right:.7rem; font-size:.58rem; text-align:right; white-space:nowrap; }
+  .timeline-dot { left:4.425rem; }
   .milestone-select { font-size:clamp(1.8rem,8vw,2.5rem); }
-  .timeline-content { margin-left:2.5rem; padding-left:0; }
-  .mobile-case-panel { grid-column:2; margin-left:2.5rem; }
-  .mobile-case-panel .case-card { min-height:12rem; padding:0; }
-  .mobile-case-panel .case-card-media { min-height:0; }
-  .mobile-case-panel .case-card-body { min-height:12rem; max-width:100%; padding:1.2rem; font-size:.77rem; }
-  .mobile-case-panel .case-card-body strong { font-size:clamp(1.35rem,6vw,2rem); }
+  .timeline-content { margin-left:1rem; padding-left:0; }
+  /* Project cards deliberately span the journey's full width on phones,
+     rather than being confined to the narrow text column beside the line. */
+  .mobile-case-panel { grid-column:1 / -1; width:100%; margin:1.4rem 0 0; }
   .case-card-list { display:flex; gap:.75rem; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:thin; padding:.1rem .1rem .8rem; }
-  .case-card-list .case-card { flex:0 0 92%; height:clamp(18rem,76vw,24rem); min-height:0; scroll-snap-align:start; }
+  .case-card-list .case-card,
+  .mobile-case-panel .case-card { grid-template-columns:1fr; grid-template-rows:minmax(11rem,52vw) auto; flex:0 0 100%; width:100%; height:auto; min-height:0; padding:0; scroll-snap-align:start; }
+  .mobile-case-panel .case-card-media { grid-column:1; grid-row:1; min-height:0; border:0; border-bottom:1px solid #d7dde3; }
+  .mobile-case-panel .case-card-body { grid-column:1; grid-row:2; height:auto; min-height:0; max-width:100%; padding:1.35rem; font-size:.9rem; }
+  .mobile-case-panel .case-card-body strong { font-size:clamp(1.55rem,7vw,2.15rem); }
 }
 
 .development-case { min-height:calc(100vh - 5rem); max-width:1440px; margin:auto; padding:clamp(5rem,13vw,12rem) clamp(1.25rem,8vw,10rem); background:#10274e; color:#f8f7f2; }
@@ -103,8 +109,6 @@
 
 /* Keep project imagery as prominent on phones as it is in the desktop rails. */
 @media (max-width:720px) {
-  .mobile-case-panel .case-card { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); }
-  .case-card-list .case-card { flex-basis:96%; height:clamp(20rem,84vw,27rem); }
-  .case-card-media img { padding:.25rem; }
+  .case-card-media img { padding:.4rem; }
   .mobile-case-panel .case-card-media > img:not(.case-card-brand) { transform:scale(1); }
 }
