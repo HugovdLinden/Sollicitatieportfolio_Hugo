@@ -62,12 +62,11 @@
 }
 
 @media (max-width: 720px) {
-  /* Keep dates in their own, wide-enough column.  The previous nested
-     indentation left long periods partly outside the available track. */
-  .journey-layout .timeline::before { left:5rem; }
-  .timeline-item { grid-template-columns:5.5rem minmax(0,1fr); }
-  .timeline-date { min-width:0; padding-right:.7rem; font-size:.58rem; text-align:right; white-space:nowrap; }
-  .timeline-dot { left:4.425rem; }
+  /* Reserve a clear gutter between each date and the timeline marker. */
+  .journey-layout .timeline::before { left:6.65rem; }
+  .timeline-item { grid-template-columns:6.75rem minmax(0,1fr); }
+  .timeline-date { position:relative; z-index:2; min-width:0; padding-right:1.25rem; font-size:.62rem; letter-spacing:-.055em; text-align:right; white-space:nowrap; }
+  .timeline-dot { left:6.075rem; }
   .milestone-select { font-size:clamp(1.8rem,8vw,2.5rem); }
   .timeline-content { margin-left:1rem; padding-left:0; }
   /* Project cards deliberately span the journey's full width on phones,
