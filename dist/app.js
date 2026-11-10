@@ -130,3 +130,13 @@
   document.querySelectorAll(".adobe-skill").forEach(item => item.insertAdjacentHTML("beforeend", '<i class="skill-rating" style="--rating:5" aria-label="5 out of 5"></i>'));
   document.querySelectorAll(".skill-grid li").forEach(item => { const name=item.querySelector("b")?.textContent; if(name==="Rhino") { item.querySelector("span").textContent="3 / 5 · Intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",3); } if(name==="Grasshopper") { item.querySelector("span").textContent="4 / 5 · Above intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",4); } });
 }());
+
+// Keep the home page concise; the complete personal story lives on its own page.
+(function () {
+  const personalPreview = document.querySelector("#personal");
+  if (personalPreview) personalPreview.remove();
+
+  const aboutCopy = document.querySelector("#about .about-copy");
+  if (!aboutCopy || aboutCopy.querySelector(".about-personal-link")) return;
+  aboutCopy.insertAdjacentHTML("beforeend", '<p><a class="about-personal-link" href="personal/">Learn more about me <span aria-hidden="true">→</span></a></p>');
+}());
