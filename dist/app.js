@@ -93,6 +93,12 @@
   } else document.querySelectorAll(".reveal").forEach(element => element.classList.add("visible"));
 }());
 
+(function () {
+  const about = document.querySelector("#about");
+  if (!about) return;
+  about.insertAdjacentHTML("afterend", `<section class="personal" id="personal"><div class="personal-heading"><p class="eyebrow">Beyond the portfolio</p><h2>Learn more<br><em>about me personally.</em></h2><p>Curiosity does not stop at the studio. It is how I make, travel, learn and spend time with the people closest to me.</p></div><div class="personal-stories"><article><img src="assets/personal/guitar.png" alt="Hugo playing guitar outdoors"><div><h3>Making music, making things.</h3><p>I play guitar, and that love of music combined with a maker’s instinct led me to build one myself.</p></div></article><article><img src="assets/personal/bike-paris.png" alt="Cycling trip to Paris"><div><h3>Going the long way.</h3><p>I love cycling trips—this was a ride to Paris with a friend—and travelling far beyond the familiar.</p></div></article><article><img src="assets/personal/allotment.png" alt="Allotment garden with Hugo's father and girlfriend"><div><h3>Growing and building together.</h3><p>With my father I share an allotment where we grow vegetables and fruit. We also built our greenhouse together.</p></div></article><article><img src="assets/personal/bologna.png" alt="Bologna during Hugo's exchange"><div><h3>Bologna changed the plan.</h3><p>My exchange in Bologna was one of the best periods of my life, so I extended it to graduate there.</p></div></article><article><img src="assets/personal/bologna-graduation.png" alt="Graduation celebration in Bologna"><div><h3>A reason to stay.</h3><p>Graduating in Bologna made the experience feel even more personal and memorable.</p></div></article><article><img src="assets/personal/sri-lanka-tuktuk.png" alt="Hugo travelling by tuk-tuk with his brother in Sri Lanka"><div><h3>Travel with my best friend.</h3><p>My brother is also my best friend. Together we travelled Sri Lanka by tuk-tuk—one moment on a long bucket list.</p></div></article><article><img src="assets/personal/parents-analog.png" alt="Analog photograph of Hugo's parents"><div><h3>People close to me.</h3><p>My family means a great deal to me. I also enjoy analogue photography, which is how I made this portrait of my parents.</p></div></article></div></section>`);
+}());
+
 /* Skills are navigable entry points to the relevant project selection. */
 (function () {
   const labels = {
