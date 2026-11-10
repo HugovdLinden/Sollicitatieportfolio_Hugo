@@ -98,7 +98,7 @@
     "SolidWorks":"SolidWorks", "Fusion 360":"Fusion 360", "Rhino":"Rhino", "Grasshopper":"Grasshopper", "Python":"Python", "Arduino":"Arduino", "Figma":"Figma", "Working with ChatGPT":"Working with ChatGPT", "Blender":"Blender",
     "Adobe Photoshop":"Adobe Photoshop", "Adobe Illustrator":"Adobe Illustrator", "Adobe InDesign":"Adobe InDesign", "Design schetsen":"Design Sketching", "Reframing":"Reframing", "Lassen":"Welding"
   };
-  const extra = ["Play Design", "Service Design", "Design for Society"];
+  const extra = ["Play Design", "Service Design", "Behavioural Design", "Engineering Related Design"];
   const title = document.querySelector("#software-title");
   if (!title) return;
   title.textContent = "Software Skills";
@@ -117,4 +117,7 @@
   extra.forEach(name => { const item = document.createElement("li"); item.className = "skill-link"; item.tabIndex = 0; item.setAttribute("role", "link"); item.innerHTML = `<div><b>${name}</b><span>Design approach</span></div>`; const open = () => location.href = `skills/?skill=${encodeURIComponent(name)}`; item.addEventListener("click", open); item.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } }); list.append(item); });
   const adobeLogos = {"Adobe Photoshop":"adobe-photoshop.png","Adobe Illustrator":"adobe-illustrator.png","Adobe InDesign":"adobe-indesign.png"};
   document.querySelectorAll(".adobe-skill").forEach(item => { const name = item.querySelector("b")?.textContent; const file = adobeLogos[name]; if (file) item.insertAdjacentHTML("afterbegin", `<img src="assets/skills/${file}" alt="${name} logo">`); });
+  document.querySelectorAll(".adobe-skill span").forEach(level => level.textContent = "5 / 5 · Highly experienced");
+  document.querySelectorAll(".adobe-skill").forEach(item => item.insertAdjacentHTML("beforeend", '<i class="skill-rating" style="--rating:5" aria-label="5 out of 5"></i>'));
+  document.querySelectorAll(".skill-grid li").forEach(item => { const name=item.querySelector("b")?.textContent; if(name==="Rhino") { item.querySelector("span").textContent="3 / 5 · Intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",3); } if(name==="Grasshopper") { item.querySelector("span").textContent="4 / 5 · Above intermediate"; item.querySelector(".skill-rating").style.setProperty("--rating",4); } });
 }());
