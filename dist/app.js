@@ -105,7 +105,7 @@
     "SolidWorks":"SolidWorks", "Fusion 360":"Fusion 360", "Rhino":"Rhino", "Grasshopper":"Grasshopper", "Python":"Python", "Arduino":"Arduino", "Figma":"Figma", "Working with ChatGPT":"Working with ChatGPT", "Blender":"Blender",
     "Adobe Photoshop":"Adobe Photoshop", "Adobe Illustrator":"Adobe Illustrator", "Adobe InDesign":"Adobe InDesign", "Design schetsen":"Design Sketching", "Reframing":"Reframing", "Lassen":"Welding"
   };
-  const extra = ["Play Design", "Service Design", "Behavioural Design", "Engineering Related Design"];
+  const extra = ["Play Design", "Service Design - UI/UX", "Behavioural Design", "Engineering Related Design"];
   const title = document.querySelector("#software-title");
   if (!title) return;
   title.textContent = "Software Skills";
