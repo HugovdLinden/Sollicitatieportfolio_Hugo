@@ -154,8 +154,6 @@
   const carousel = document.querySelector(".featured-carousel");
   if (!carousel) return;
   const track = carousel.querySelector(".featured-track");
-  const compalSlide = track.querySelector('a[href="projects/compal-nurse-wearables/"]');
-  if (compalSlide) track.prepend(compalSlide);
   const easyfeltImage = track.querySelector('a[href="projects/easyfelt/"] img');
   if (easyfeltImage) {
     easyfeltImage.src = "assets/easyfelt-fiora.jpg";
@@ -163,6 +161,10 @@
   }
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/apex-seat/"><img src="assets/apex-seat-aircell-lattice.png" alt="Aircell lattice structure developed for the Apex Seat"><span><p class="eyebrow">Computational design</p><h3>Apex Seat</h3><p>Responsive lattice structures for comfort and protection.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/3d-next-level/"><img src="assets/fair-ride-painting.png" alt="Spray-painting the Fair-ride seat prototype"><span><p class="eyebrow">Creative engineering</p><h3>Fair-ride seat</h3><p>Bringing a full-scale seat prototype to life.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
+  track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/arma/"><img src="assets/arma-blobs.png" alt="Clay-like ARMA play forms"><span><p class="eyebrow">Play design</p><h3>ARMA</h3><p>Playful forms designed for shared discovery.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
+  track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/bendable-cutlery/"><img src="assets/bendable-cutlery.png" alt="Bendable Cutlery concept"><span><p class="eyebrow">Behavioural design</p><h3>Bendable Cutlery</h3><p>A flexible concept that invites mindful portions.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
+  track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/washing-a/"><img src="assets/washing-a-hero.png" alt="Washing A industrial washing-machine concept"><span><p class="eyebrow">Product design</p><h3>Washing A</h3><p>A coherent industrial washing-machine family.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
+  track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/emi-vital-op-zuid/"><img src="assets/emi-kick-picnic-sketch.png" alt="KickPicknick concept sketch"><span><p class="eyebrow">Play design</p><h3>KickPicknick</h3><p>An outdoor bench for rest, movement and play.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   const slides = [...carousel.querySelectorAll(".featured-slide")];
   const dots = carousel.querySelector(".featured-dots");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
