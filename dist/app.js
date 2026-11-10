@@ -91,3 +91,28 @@
     document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
   } else document.querySelectorAll(".reveal").forEach(element => element.classList.add("visible"));
 }());
+
+/* Skills are navigable entry points to the relevant project selection. */
+(function () {
+  const labels = {
+    "SolidWorks":"SolidWorks", "Fusion 360":"Fusion 360", "Rhino":"Rhino", "Grasshopper":"Grasshopper", "Python":"Python", "Arduino":"Arduino", "Figma":"Figma", "Working with ChatGPT":"Working with ChatGPT", "Blender":"Blender",
+    "Adobe Photoshop":"Adobe Photoshop", "Adobe Illustrator":"Adobe Illustrator", "Adobe InDesign":"Adobe InDesign", "Design schetsen":"Design Sketching", "Reframing":"Reframing", "Lassen":"Welding"
+  };
+  const extra = ["Play Design", "Service Design", "Design for Society"];
+  const title = document.querySelector("#software-title");
+  if (!title) return;
+  title.textContent = "Software Skills";
+  document.querySelector("#other-skills-title").textContent = "Other Skills";
+  document.querySelectorAll(".skill-grid li, .other-skills li").forEach(item => {
+    const name = item.querySelector("b");
+    if (!name) return;
+    if (labels[name.textContent]) name.textContent = labels[name.textContent];
+    const level = item.querySelector("span");
+    if (level) level.textContent = level.textContent.replace("Zeer ervaren", "Highly experienced").replace("Gemiddelde kennis", "Intermediate").replace("Basiskennis", "Basic").replace("Basis tot gemiddeld", "Basic to intermediate").replace("Bovengemiddeld", "Above intermediate").replace("Gevorderd", "Advanced").replace("Ontwerpmethode", "Design method").replace("Basis", "Basic").replace("Ervaren", "Experienced");
+    item.classList.add("skill-link"); item.tabIndex = 0; item.setAttribute("role", "link");
+    const open = () => location.href = `skills/?skill=${encodeURIComponent(name.textContent)}`;
+    item.addEventListener("click", open); item.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } });
+  });
+  const list = document.querySelector(".other-skills ul");
+  extra.forEach(name => { const item = document.createElement("li"); item.className = "skill-link"; item.tabIndex = 0; item.setAttribute("role", "link"); item.innerHTML = `<div><b>${name}</b><span>Design approach</span></div>`; const open = () => location.href = `skills/?skill=${encodeURIComponent(name)}`; item.addEventListener("click", open); item.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } }); list.append(item); });
+}());
