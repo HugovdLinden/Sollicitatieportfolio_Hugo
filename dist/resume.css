@@ -22,6 +22,8 @@
 .skill-rating { display: block; width: 5.4rem; height: .38rem; margin-top: .65rem; border-radius: 999px; background: linear-gradient(90deg, var(--ink) calc(var(--rating) * 20%), #e5e4de 0); }
 .skill-grid .adobe-skill { grid-template-columns: 3.1rem 1fr; min-height: 5.5rem; background: #f5f4ee; }
 .other-skills li { grid-template-columns: 1fr; padding-left: 0; }
+.languages li { grid-template-columns: 1fr; padding-left: 0; }
+.languages .skill-rating { margin-top: .55rem; }
 .skill-link { cursor: pointer; transition: background .2s ease, transform .2s ease; }
 .skill-link:hover, .skill-link:focus-visible { background: #edf5fa; outline: 3px solid #58b6e7; outline-offset: -3px; transform: translateY(-2px); }
 @media (max-width: 720px) { .skill-grid { grid-template-columns: 1fr; } .skill-grid li { grid-template-columns: 3.4rem minmax(0,1fr); min-height: 5.8rem; padding: .85rem; } .skill-grid li > img { width: 3.4rem !important; height: 3.4rem !important; max-width: 3.4rem !important; max-height: 3.4rem !important; object-fit: contain; } .skill-grid .adobe-skill { grid-template-columns: 3.4rem minmax(0,1fr); } }

@@ -116,6 +116,8 @@
   });
   const list = document.querySelector(".other-skills ul");
   extra.forEach(name => { const item = document.createElement("li"); item.className = "skill-link"; item.tabIndex = 0; item.setAttribute("role", "link"); item.innerHTML = `<div><b>${name}</b><span>Design approach</span></div>`; const open = () => location.href = `skills/?skill=${encodeURIComponent(name)}`; item.addEventListener("click", open); item.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } }); list.append(item); });
+  const languages = [["Dutch",5,"Fluent"],["English",5,"Fluent"],["German",3,"Intermediate"],["Italian",3,"Intermediate"],["French",1,"Basic"],["Spanish",1,"Basic"]];
+  const languageSection = document.createElement("section"); languageSection.className = "resume-group languages"; languageSection.innerHTML = `<h3>Languages</h3><ul>${languages.map(([name,rating,level]) => `<li><div><b>${name}</b><span>${rating} / 5 · ${level}</span><i class="skill-rating" style="--rating:${rating}" aria-label="${rating} out of 5"></i></div></li>`).join("")}</ul>`; document.querySelector(".other-skills").insertAdjacentElement("afterend", languageSection);
   const adobeLogos = {"Adobe Photoshop":"adobe-photoshop.png","Adobe Illustrator":"adobe-illustrator.png","Adobe InDesign":"adobe-indesign.png"};
   document.querySelectorAll(".adobe-skill").forEach(item => { const name = item.querySelector("b")?.textContent; const file = adobeLogos[name]; if (file) item.insertAdjacentHTML("afterbegin", `<img src="assets/skills/${file}" alt="${name} logo">`); });
   document.querySelectorAll(".adobe-skill span").forEach(level => level.textContent = "5 / 5 · Highly experienced");
