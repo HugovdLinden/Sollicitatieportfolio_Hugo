@@ -15,7 +15,8 @@
   };
   const panel = milestone => {
     const cases = casesFor(milestone);
-    return cases.length ? `<div class="case-card-list" tabindex="0" aria-label="Related projects. Scroll horizontally to browse.">${cases.map(card).join("")}</div>` : `<div class="journey-empty"><p class="eyebrow">${milestone.kind === "work" ? "Work milestone" : "Education milestone"}</p><p>No public case is linked to this milestone yet.</p></div>`;
+    const navigation = cases.length > 1 ? '<button class="case-rail-nav case-rail-prev" type="button" aria-label="Show previous project">‹</button><button class="case-rail-nav case-rail-next" type="button" aria-label="Show next project">›</button>' : "";
+    return cases.length ? `<div class="case-rail">${navigation}<div class="case-card-list" tabindex="0" aria-label="Related projects. Scroll horizontally to browse.">${cases.map(card).join("")}</div></div>` : `<div class="journey-empty"><p class="eyebrow">${milestone.kind === "work" ? "Work milestone" : "Education milestone"}</p><p>No public case is linked to this milestone yet.</p></div>`;
   };
   const milestone = (item, index) => {
     const hasCases = casesFor(item).length > 0;
@@ -67,6 +68,21 @@
     });
     const rail = item.querySelector(".case-card-list");
     if (rail) {
+      const previous = item.querySelector(".case-rail-prev");
+      const next = item.querySelector(".case-rail-next");
+      const updateRailNavigation = () => {
+        if (!previous || !next) return;
+        const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+        const canScroll = maxScroll > 2;
+        previous.hidden = !canScroll || rail.scrollLeft <= 1;
+        next.hidden = !canScroll || rail.scrollLeft >= maxScroll - 1;
+      };
+      const moveRail = direction => rail.scrollBy({ left: direction * Math.max(rail.clientWidth * .85, 260), behavior: reduceMotion ? "auto" : "smooth" });
+      previous?.addEventListener("click", () => moveRail(-1));
+      next?.addEventListener("click", () => moveRail(1));
+      rail.addEventListener("scroll", updateRailNavigation, { passive: true });
+      new ResizeObserver(updateRailNavigation).observe(rail);
+      requestAnimationFrame(updateRailNavigation);
       rail.addEventListener("wheel", event => {
         if (disclosureMode.matches || rail.scrollWidth <= rail.clientWidth || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
         const maxScroll = rail.scrollWidth - rail.clientWidth;

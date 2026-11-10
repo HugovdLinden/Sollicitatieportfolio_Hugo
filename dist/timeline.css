@@ -33,6 +33,10 @@
 .milestone-select:focus-visible { outline:3px solid #087cba; outline-offset:5px; }
 .milestone-arrow { display:inline-block; margin-left:.5rem; font:400 .85em var(--mono); transform:rotate(-45deg); }
 .case-card-list { display:flex; gap:1rem; width:100%; max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-color:#58b6e7 #dceffc; scrollbar-width:thin; padding:.1rem .1rem .9rem; }
+.case-rail { position:relative; width:100%; }
+.case-rail-nav { position:absolute; z-index:3; top:50%; width:2.25rem; height:2.25rem; transform:translateY(-50%); border:1px solid #87bfe0; border-radius:50%; background:#fff; color:#1d5d8b; cursor:pointer; font:700 1.5rem/1 var(--sans); box-shadow:0 2px 8px rgba(7,39,73,.14); }
+.case-rail-nav:hover, .case-rail-nav:focus-visible { background:#e9f5fb; outline:3px solid #58b6e7; outline-offset:2px; }
+.case-rail-prev { left:.55rem; }.case-rail-next { right:.55rem; }
 /* Each case remains one stop in the horizontal rail, now presented as a full-width white project bar. */
 .case-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); position:relative; overflow:hidden; flex:0 0 100%; height:clamp(19rem,24vw,27rem); min-height:0; scroll-snap-align:start; background:#fff; color:#23375f; text-decoration:none; border:1px solid #d7dde3; }
 .case-card::after { display:none; }
@@ -62,6 +66,7 @@
   .mobile-case-panel, .mobile-case-panel.is-open { max-height:none; opacity:1; transform:none; transition:none; }
   .journey-milestone { padding-bottom:3rem; }
   .case-card-list { display:grid; overflow:visible; padding:0; scroll-snap-type:none; }
+  .case-rail-nav { display:none; }
   .case-card { min-height:14rem; }
   .mobile-case-panel .case-card-media { min-height:14rem; }
 }
@@ -78,6 +83,7 @@
      rather than being confined to the narrow text column beside the line. */
   .mobile-case-panel { grid-column:1 / -1; width:100%; margin:1.4rem 0 0; }
   .case-card-list { display:flex; gap:.75rem; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:thin; padding:.1rem .1rem .8rem; }
+  .case-rail-nav { display:block; top:calc(50% - .4rem); }
   .case-card-list .case-card,
   .mobile-case-panel .case-card { grid-template-columns:1fr; grid-template-rows:minmax(11rem,52vw) auto; flex:0 0 100%; width:100%; height:auto; min-height:0; padding:0; scroll-snap-align:start; }
   .mobile-case-panel .case-card-media { grid-column:1; grid-row:1; min-height:0; border:0; border-bottom:1px solid #d7dde3; }
