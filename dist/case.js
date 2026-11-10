@@ -1,7 +1,7 @@
 (function(){
   const slug=document.body.dataset.project,p=window.PORTFOLIO.projects[slug];
   if(!p){location.href='../../';return}
-  document.title=`${p.title} — Hugo van der Linden`;
+  document.title=`${p.title} | Hugo van der Linden`;
   const heroMedia=p.video?`<video autoplay muted loop playsinline poster="../../assets/${p.image}" aria-label="${p.title} project video"><source src="../../assets/${p.video}" type="video/mp4"></video>`:`<img src="../../assets/${p.image}" alt="${p.title}">`;
   document.querySelector('#case').innerHTML=`
     <section class="case-hero">${heroMedia}<div><p class="eyebrow">${p.period} · ${p.role}</p><h1>${p.title}</h1><p class="case-summary">${p.summary}</p></div></section>
