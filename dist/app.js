@@ -159,6 +159,8 @@
     easyfeltImage.src = "assets/easyfelt-fiora.jpg";
     easyfeltImage.alt = "EASYfelt Luma Fiora acoustic pendant light";
   }
+  const woodworkingSlide = track.querySelector('a[href="projects/guitar-build/"]');
+  if (woodworkingSlide) woodworkingSlide.classList.add("featured-slide--woodworking");
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/apex-seat/"><img src="assets/apex-seat-aircell-lattice.png" alt="Aircell lattice structure developed for the Apex Seat"><span><p class="eyebrow">Computational design</p><h3>Apex Seat</h3><p>Responsive lattice structures for comfort and protection.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/3d-next-level/"><img src="assets/fair-ride-painting.png" alt="Spray-painting the Fair-ride seat prototype"><span><p class="eyebrow">Creative engineering</p><h3>Fair-ride seat</h3><p>Bringing a full-scale seat prototype to life.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/arma/"><img src="assets/arma-blobs.png" alt="Clay-like ARMA play forms"><span><p class="eyebrow">Play design</p><h3>ARMA</h3><p>Playful forms designed for shared discovery.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
