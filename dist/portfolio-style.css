@@ -22,4 +22,4 @@
 /* Highlighted work is intentionally an image-only, 16:9 moving gallery. */
 .highlighted-projects{padding:0;background:#f1ece5}.highlighted-heading,.featured-nav,.featured-dots,.featured-slide span{display:none}.featured-carousel{max-width:60rem;margin:auto}.featured-slide{height:auto;aspect-ratio:16/9;padding:0}.featured-slide:after{display:none}.featured-slide img{object-fit:cover}.featured-slide:focus-visible{outline:4px solid #d8fb6b;outline-offset:-4px}
 @media(max-width:720px){.featured-carousel{max-width:none}.featured-slide{height:auto;max-height:none;padding:0;aspect-ratio:16/9}}
-.featured-slide--woodworking img{transform:rotate(45deg) scale(1.42)}.featured-slide--woodworking:hover img,.featured-slide--woodworking:focus-visible img{transform:rotate(45deg) scale(1.48)}
+.featured-slide--woodworking img{transform:rotate(90deg) scale(1.42)}.featured-slide--woodworking:hover img,.featured-slide--woodworking:focus-visible img{transform:rotate(90deg) scale(1.48)}
