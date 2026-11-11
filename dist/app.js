@@ -167,7 +167,6 @@
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/bendable-cutlery/"><img src="assets/bendable-cutlery.png" alt="Bendable Cutlery concept"><span><p class="eyebrow">Behavioural design</p><h3>Bendable Cutlery</h3><p>A flexible concept that invites mindful portions.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/arma/"><img src="assets/arma-blobs.png" alt="Clay-like ARMA play forms"><span><p class="eyebrow">Play design</p><h3>ARMA</h3><p>Playful forms designed for shared discovery.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/emi-vital-op-zuid/"><img src="assets/emi-kick-picnic-sketch.png" alt="KickPicknick concept sketch"><span><p class="eyebrow">Play design</p><h3>KickPicknick</h3><p>An outdoor bench for rest, movement and play.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
-  track.insertAdjacentHTML("beforeend", '<a class="featured-slide" href="projects/grabable/"><img src="assets/grabable-exploded-view.png" alt="Exploded view of the Grabable hand exoskeleton components"><span><p class="eyebrow">Graduation project</p><h3>Grabable</h3><p>Components that come together to support grasping.</p><b>View project <i aria-hidden="true">↗</i></b></span></a>');
   const slides = [...carousel.querySelectorAll(".featured-slide")];
   const dots = carousel.querySelector(".featured-dots");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -189,8 +188,6 @@
   };
   carousel.querySelector(".featured-prev").addEventListener("click", () => { show(active - 1); restart(); });
   carousel.querySelector(".featured-next").addEventListener("click", () => { show(active + 1); restart(); });
-  carousel.addEventListener("mouseenter", () => clearInterval(timer));
-  carousel.addEventListener("mouseleave", restart);
   carousel.addEventListener("focusin", () => clearInterval(timer));
   carousel.addEventListener("focusout", event => { if (!carousel.contains(event.relatedTarget)) restart(); });
   show(0); restart();
