@@ -45,6 +45,7 @@
 .case-card-media img { display:block; box-sizing:border-box; width:100%; height:100%; max-width:100%; max-height:100%; padding:.5rem; object-fit:contain; object-position:center; }
 .case-card-media img.case-card-logo { object-fit:contain; padding:.5rem; }
 .case-card-media img.case-card-brand { position:absolute; z-index:1; left:.6rem; bottom:.6rem; width:auto; max-width:10.5rem; height:3rem; object-fit:contain; object-position:left center; padding:.35rem .65rem; background:rgba(255,255,255,.92); border-radius:.1rem; }
+.project-emi-vital-op-zuid .case-card-media img.case-card-brand { max-width:13rem; height:4.5rem; }
 .case-card-media > img:not(.case-card-brand) { transform:scale(.84); transform-origin:center; }
 .case-card-body { grid-column:1; grid-row:1; display:flex; min-height:0; height:100%; flex-direction:column; justify-content:center; gap:.5rem; max-width:none; padding:clamp(1.2rem,2.2vw,2rem); font-size:clamp(.82rem,1.25vw,1rem); line-height:1.45; }
 .case-card-body strong { font-size:clamp(1.35rem,2.4vw,2.25rem); line-height:.98; letter-spacing:-.045em; }
